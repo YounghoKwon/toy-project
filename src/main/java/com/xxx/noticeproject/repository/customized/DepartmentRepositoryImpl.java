@@ -1,6 +1,9 @@
 package com.xxx.noticeproject.repository.customized;
 
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.xxx.noticeproject.dto.DepartmentDto;
 import com.xxx.noticeproject.entity.Department;
 import com.xxx.noticeproject.entity.QDepartment;
 import com.xxx.noticeproject.entity.QUser;
@@ -14,9 +17,10 @@ import java.util.List;
 public class DepartmentRepositoryImpl extends QuerydslRepositorySupport
 
 implements DepartmentCustomRepository {
-
-    public DepartmentRepositoryImpl(){
+    private final JPAQueryFactory queryFactory;
+    public DepartmentRepositoryImpl(JPAQueryFactory queryFactory){
         super(Department.class);
+        this.queryFactory = queryFactory;
     }
 
 
@@ -35,8 +39,34 @@ implements DepartmentCustomRepository {
         query = getQuerydsl().applyPagination(pageable, query);
         List<Department> myObjectList = query.fetch();
         long count =  myObjectList.size();
-        Page<Department> noticePage = new PageImpl<>(myObjectList, pageable, count);
-        return noticePage;
+        Page<Department> departmentPage = new PageImpl<>(myObjectList, pageable, count);
+        return departmentPage;
+    }
+
+    @Override
+    public Page<DepartmentDto.Department> getSearchDepartmentListUsingJPAQueryFactory(Pageable pageable, String searchText) {
+        QDepartment qDepartment = QDepartment.department;
+        QUser qUser = QUser.user;
+
+        JPQLQuery<DepartmentDto.Department> query =
+                queryFactory.select(Projections.bean(DepartmentDto.Department.class,
+                        qDepartment.id,
+                        qDepartment.code,
+                        qDepartment.name,
+                        qDepartment.updateDate
+                        )).from(qDepartment)
+                .leftJoin(qUser)
+                .on(qUser.department.id.eq(qDepartment.id))
+                .where(qUser.loginId.contains(searchText)
+                        .or(qDepartment.code.contains(searchText))
+                        .or(qDepartment.name.contains(searchText))
+                );
+
+        query = getQuerydsl().applyPagination(pageable, query);
+        List<DepartmentDto.Department> myObjectList = query.fetch();
+        long count =  myObjectList.size();
+        Page<DepartmentDto.Department> departmentPage = new PageImpl<>(myObjectList, pageable, count);
+        return departmentPage;
     }
 }
 

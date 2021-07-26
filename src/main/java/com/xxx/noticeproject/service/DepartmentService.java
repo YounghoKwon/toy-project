@@ -12,13 +12,12 @@ import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-public class NoticeService {
+public class DepartmentService {
     private final DepartmentRepository departmentRepository;
 
     public Page<DepartmentDto.Department> getDepartMentList(String searchText, Pageable pageable) {
 
-//        return departmentRepository.getSearchDepartmentList(pageable, searchText).map(departmentMapper::toDto);
-        return null;
+        return departmentRepository.getSearchDepartmentListUsingJPAQueryFactory(pageable, searchText);
     }
 
     public DepartmentDto.Department getDepartment(Long id) {

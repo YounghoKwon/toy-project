@@ -1,9 +1,6 @@
 package com.xxx.noticeproject.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -17,10 +14,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Getter
 @EntityListeners(AuditingEntityListener.class)
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class Department {
+    public final static Department NONE = new Department(null,null);
+
     @Id @GeneratedValue
     private Long id;
 
@@ -51,5 +50,4 @@ public class Department {
         this.name = name;
         this.code = code;
     }
-    public Department(){}
 }

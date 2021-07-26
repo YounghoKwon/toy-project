@@ -1,11 +1,7 @@
 package com.xxx.noticeproject.entity;
 
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -16,15 +12,15 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-//@Setter
-@Getter
 @EntityListeners(AuditingEntityListener.class)
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class User {
+
+    public final static User NONE = new User(null, null, null, null);
+
     @Id @GeneratedValue @Setter
     private Long id;
 
@@ -57,12 +53,10 @@ public class User {
     private String updateBy;
 
     public User(@NotNull @Size(min = 5, max = 16) String loginId, @NotNull @Size(min = 2, max = 30) String name, @NotNull @Size(min = 8, max = 40) String passwd, @NotNull Department department) {
-        super();
         this.loginId = loginId;
         this.name = name;
         this.passwd = passwd;
         this.department = department;
     }
-    public User(){};
 
 }

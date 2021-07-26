@@ -8,4 +8,5 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 public interface DepartmentRepository extends JpaRepository<Department,Long>, DepartmentCustomRepository, QuerydslPredicateExecutor<Department> {
 
 
+    Department findByName(String name);
 }
