@@ -2,7 +2,6 @@ package com.xxx.noticeproject.service;
 
 import com.xxx.noticeproject.dto.DepartmentDto;
 import com.xxx.noticeproject.entity.Department;
-import com.xxx.noticeproject.mapper.DepartmentMapper;
 import com.xxx.noticeproject.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,17 +14,18 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class NoticeService {
     private final DepartmentRepository departmentRepository;
-    private final DepartmentMapper departmentMapper;
 
     public Page<DepartmentDto.Department> getDepartMentList(String searchText, Pageable pageable) {
 
-        return departmentRepository.getSearchDepartmentList(pageable, searchText).map(departmentMapper::toDto);
+//        return departmentRepository.getSearchDepartmentList(pageable, searchText).map(departmentMapper::toDto);
+        return null;
     }
 
     public DepartmentDto.Department getDepartment(Long id) {
-        return departmentRepository.findById(id)
-                .map(departmentMapper::toDto)
-                .orElseThrow(NoSuchElementException::new);
+//        return departmentRepository.findById(id)
+//                .map(departmentMapper::toDto)
+//                .orElseThrow(NoSuchElementException::new);
+        return null;
     }
 
     public void deleteDepartment(Department department){

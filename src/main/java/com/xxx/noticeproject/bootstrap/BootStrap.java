@@ -2,7 +2,6 @@ package com.xxx.noticeproject.bootstrap;
 
 import com.xxx.noticeproject.entity.Department;
 import com.xxx.noticeproject.entity.User;
-import com.xxx.noticeproject.mapper.DepartmentMapper;
 import com.xxx.noticeproject.repository.DepartmentRepository;
 import com.xxx.noticeproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
