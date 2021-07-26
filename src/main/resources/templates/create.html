@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>공지 사항</title>
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css} "/>
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.css} "/>
+</head>
+<body>
+    <script type="text/javascript" th:src="@{/jquery/jquery-3.6.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/notice_create.js}"></script>
+    <script type="text/javascript" th:src="@{/js/notice_file_upload.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <div class="container">
+        <div class="page-header">
+            <h1><small>공지 사항 등록</small></h1>
+        </div>
+        <form action="/api/notice/upload" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="mb-3 row">
+                <label for="title" class="col-sm-1 col-form-label">제목</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control-plaintext" id="title" >
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="contents_textarea" class="form-label" style="padding-left: 15px;"> 내용</label>
+                <textarea class="form-control" id="contents_textarea" rows="3" ></textarea>
+            </div>
+
+            <div class="row">
+                <div class="card-body card-block">
+
+                        <div class="row form-group">
+                            <div class="col-12 col-md-12">
+                                <div class="control-group" id="">
+                                    <label class="control-label" for="field1">파일 업로드</label>
+                                    <div class="controls">
+                                        <div class="entry input-group upload-input-group">
+                                            <input class="form-control" name="fields[]" type="file">
+                                            <button class="btn btn-upload btn-success btn-add" type="button">
+                                                <i class="fa fa-plus">+</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+            <input value="등록" class="btn btn-primary" type="submit"/>
+<!--            <input value="등록" class="btn btn-primary"type="button"  onclick="createNotice2()" />-->
+        </form>
+    </div>
+
+</body>
+</html>

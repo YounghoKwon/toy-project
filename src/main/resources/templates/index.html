@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>공지 사항</title>
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css} "/>
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.css} "/>
+</head>
+<body>
+    <script type="text/javascript" th:src="@{/jquery/jquery-3.6.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/notice_list.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <div class="container">
+        <div class="page-header">
+            <h1><small>공지 사항</small></h1>
+        </div>
+        <div style="text-align: right">
+            <input type="text" id="search_text"> <input type="button" value="검색" onclick="searchNotice()">
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">날짜</th>
+                    <th scope="col">보기</th>
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
+                </tr>
+            </thead>
+            <tbody id="notice_body">
+                <tr>
+                    <td th:colspan="6">데이터가 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="my-4"> <!-- Pagination -->
+            <ul class="pagination pagination-md justify-content-center text-center">
+                <li class="page-item">
+                    <a class="page-link" @click="prevPage">Previous</a>
+                </li>
+                <li class="page-link" style="background-color: inherit">
+                    1 of 5
+                </li>
+                <li class="page-item">
+                    <a class="page-link" @click="nextPage">Next</a>
+                </li>
+            </ul>
+        </div>
+
+        <input value="등록" class="btn btn-primary" type="button" onclick="createNotice()" />
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>공지 사항</title>
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css} "/>
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.css} "/>
+</head>
+<body>
+    <script type="text/javascript" th:src="@{/jquery/jquery-3.6.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/notice_detail.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <div class="container">
+        <div class="page-header">
+            <h1><small>공지 사항 상세 보기</small></h1>
+        </div>
+
+        <input  type="hidden"  id="notice_id" th:value="${id}" > </input>
+        <div class="mb-3 row">
+            <label for="title" class="col-sm-2 col-form-label">제목</label>
+            <div class="col-sm-10">
+                <div id="title"></div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="user_name" class="col-sm-2 col-form-label">작성자</label>
+            <div class="col-sm-10">
+                <div id="user_name"></div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="update_date" class="col-sm-2 col-form-label">수정일시</label>
+            <div class="col-sm-10">
+                <div id="update_date"></div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="contents_textarea" class="form-label" style="padding-left: 15px;"> 내용</label>
+            <textarea class="form-control" id="contents_textarea" rows="3" readonly></textarea>
+        </div>
+    </div>
+</body>
+</html>
