@@ -11,10 +11,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.validation.annotation.Validated;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.lang.reflect.Member;
 import java.util.List;
+import java.util.Set;
 
 
 @SpringBootTest
@@ -53,6 +60,42 @@ class DepartmentTest {
         assertEquals(findDepartmentList.getTotalElements(), 1);
     }
 
+    @Test
+    @DisplayName("부서 등록 실패 테스트(@Size(min = 3, max = 20)code 적용 되지 않은 문제)")
+    void department_fail_test(){
+        Department department = new Department("a","a");
+        departmentRepository.save(department);
+
+        Department findDepartment = departmentRepository.findByName("a");
+        System.out.println(findDepartment);
+
+    }
+
+    @Test
+    @DisplayName("부서 등록 실패 테스트2")
+    void department_fail_test2(){
+
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+
+
+        Department department = Department.builder().id(null).code(null).build();
+//        new Department(null,null);
+
+        System.out.println(department);
+        Set<ConstraintViolation<Department>> violations = validator.validate(department);
+        departmentRepository.save(department);
+        for (ConstraintViolation<Department> violation : violations) {
+            System.out.println("violation = " + violation);
+            System.out.println("violation.message = " + violation.getMessage());
+        }
+
+
+
+
+
+
+    }
 
 }
 

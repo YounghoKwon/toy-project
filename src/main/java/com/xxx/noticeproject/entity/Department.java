@@ -16,9 +16,11 @@ import java.util.List;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 @ToString
 public class Department {
-    public final static Department NONE = new Department(null,null);
+//    public final static Department NONE = new Department(null,null);
 
     @Id @GeneratedValue
     private Long id;

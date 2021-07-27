@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @ToString
 public class User {
 
-    public final static User NONE = new User(null, null, null, null);
+//    public final static User NONE = new User(null, null, null, null);
 
     @Id @GeneratedValue @Setter
     private Long id;
