@@ -52,11 +52,22 @@ public class User {
     @LastModifiedBy
     private String updateBy;
 
-    public User(@NotNull @Size(min = 5, max = 16) String loginId, @NotNull @Size(min = 2, max = 30) String name, @NotNull @Size(min = 8, max = 40) String passwd, @NotNull Department department) {
+    public User(String loginId,String name, String passwd, Department department) throws IllegalArgumentException{
+        if(loginId == null) throw new IllegalArgumentException("loginId is null !!");
+        if(name == null) throw new IllegalArgumentException("name is null !!");
+        if(passwd == null) throw new IllegalArgumentException("passwd is null !!");
+        if(department == null) throw new IllegalArgumentException("department is null !!");
+        if(5 > loginId.length() || loginId.length() > 16 ) throw new IllegalArgumentException("name size 5~16 this : " + loginId.length());
+        if(2 > name.length() || name.length() > 30 ) throw new IllegalArgumentException("code size 2~30 this : " + name.length());
+        if(8 > passwd.length() || passwd.length() > 40  ) throw new IllegalArgumentException("code size 8~40 this : " + passwd.length());
         this.loginId = loginId;
         this.name = name;
         this.passwd = passwd;
         this.department = department;
     }
 
+
+//    public boolean isAuthCheck(String auth) {
+//        return Boolean.FALSE;
+//    }
 }
