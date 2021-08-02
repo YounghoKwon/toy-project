@@ -20,12 +20,12 @@ class BootStrapData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("start boot");
 
-//        Department department1 = new Department("ABC","ABC");
-//        Department department2 = new Department("DEC","DEC");
-//        departmentRepository.save(department1);
-//        departmentRepository.save(department2);
-//        User user = new User("admin","admin","12345678",department1);
-//        userRepository.save(user);
+        Department department1 = new Department("ABC","ABC");
+        Department department2 = new Department("DEC","DEC");
+        departmentRepository.save(department1);
+        departmentRepository.save(department2);
+        User user = new User("admin","admin","12345678",department1);
+        userRepository.save(user);
 
     }
 }

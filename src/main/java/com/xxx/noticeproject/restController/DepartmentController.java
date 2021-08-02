@@ -23,18 +23,18 @@ public class DepartmentController {
     private final DepartmentService departmentService;
 
     @GetMapping(value = "/")
-    public ResponseEntity<Page<DepartmentDto.Department>> list(@PageableDefault(size=20, sort="title",direction = Sort.Direction.ASC) Pageable pageable, @RequestParam(value = "search_text") String searchText){
-        return new ResponseEntity<>(departmentService.getDepartMentList(searchText,pageable), HttpStatus.OK);
+    public ResponseEntity<Page<DepartmentDto.Department>> list(@PageableDefault(size=20, sort="code",direction = Sort.Direction.ASC) Pageable pageable, @RequestParam(value = "search_text") String searchText){
+        return new ResponseEntity<>(departmentService.getDepartmentList(searchText,pageable), HttpStatus.OK);
     }
 
     @PostMapping(value = "/")
     public ResponseEntity<Department> saveNotice(@Valid @RequestBody Department department){
-        return new ResponseEntity<>(departmentService.modifyDepartMent(department), HttpStatus.OK);
+        return new ResponseEntity<>(departmentService.modifyDepartment(department), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/")
     public ResponseEntity<Department> modifyNotice(@Valid @RequestBody Department department){
-        return new ResponseEntity<>(departmentService.modifyDepartMent(department), HttpStatus.OK);
+        return new ResponseEntity<>(departmentService.modifyDepartment(department), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")

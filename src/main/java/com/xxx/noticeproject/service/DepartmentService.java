@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 public class DepartmentService {
     private final DepartmentRepository departmentRepository;
 
-    public Page<DepartmentDto.Department> getDepartMentList(String searchText, Pageable pageable) {
+    public Page<DepartmentDto.Department> getDepartmentList(String searchText, Pageable pageable) {
 
         return departmentRepository.getSearchDepartmentListUsingJPAQueryFactory(pageable, searchText);
     }
@@ -35,7 +35,7 @@ public class DepartmentService {
         departmentRepository.deleteById(id);
     }
 
-    public Department modifyDepartMent(Department department){
+    public Department modifyDepartment(Department department){
         return departmentRepository.save(department);
     }
 
